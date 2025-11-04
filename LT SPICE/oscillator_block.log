@@ -1,6 +1,6 @@
 LTspice 24.1.3 for Windows
 Circuit: C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\oscillator_block.net
-Start Time: Tue Nov  4 13:20:36 2025
+Start Time: Tue Nov  4 14:34:21 2025
 solver = Normal
 Maximum thread count: 22
 tnom = 27
@@ -26,7 +26,7 @@ Gmin = 2.70769e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 0.671 seconds.
+Total elapsed time: 0.545 seconds.
 
 Files loaded:
 C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\oscillator_block.net
