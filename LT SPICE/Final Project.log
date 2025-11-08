@@ -1,6 +1,6 @@
 LTspice 24.1.3 for Windows
 Circuit: C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\Final Project.net
-Start Time: Fri Nov  7 19:32:48 2025
+Start Time: Fri Nov  7 19:47:27 2025
 solver = Normal
 Maximum thread count: 22
 tnom = 27
@@ -27,7 +27,7 @@ Gmin = 2.70769e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 5.175 seconds.
+Total elapsed time: 4.401 seconds.
 
 Files loaded:
 C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\Final Project.net
