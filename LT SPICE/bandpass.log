@@ -1,13 +1,11 @@
 LTspice 24.1.0 for Windows
 Circuit: C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\bandpass.net
-Start Time: Wed Nov  5 13:55:50 2025
+Start Time: Fri Nov  7 13:28:31 2025
 solver = Normal
 Maximum thread count: 12
 tnom = 27
 temp = 27
 method = trap
-WARNING: Node nc_02 is floating.
-
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
 Gmin = 10
@@ -28,7 +26,7 @@ Gmin = 2.70769e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 3.640 seconds.
+Total elapsed time: 0.572 seconds.
 
 Files loaded:
 C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\bandpass.net
