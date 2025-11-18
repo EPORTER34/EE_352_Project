@@ -3,7 +3,7 @@ X§Oscillator V- 0 N008 V+ oscillator_block
 X§Switching_Modulator N008 Vin 0 N007 V+ V- switching_modulator
 V1 V+ 0 12V
 V2 V- 0 -12V
-V3 P001 0 SINE(0 30m 1k 0 0 0 0)
+V3 Vin 0 SINE(0 100m 1k 0 0 0 0)
 X§Bandpass N007 0 N006 V+ V- bandpass
 X§Buffer_Amplifier N006 N003 V+ V- buffer_amplifier
 X§Envelope_Detector N004 N005 envelope_detector
@@ -11,8 +11,8 @@ X§Power_Transformer N002 0 Vout V+ V- power_transformer
 X§Lowpass N001 0 N002 V+ V- bandpass2
 R1 N003 N004 50
 X§Buffer_Amplifier1 N005 N001 V+ V- buffer_amplifier
-V4 Vin P002 SINE(0 30m 4k 0 0 0 0)
-V5 P002 P001 SINE(0 30m 300 0 0 0 0)
+V4 NC_01 NC_02 SINE(0 30m 4k 0 0 0 0)
+V5 NC_03 NC_04 SINE(0 30m 300 0 0 0 0)
 
 * block symbol definitions
 .subckt oscillator_block V- Gnd out V+
@@ -61,8 +61,8 @@ X§U3 N008 N002 V+ V- N002 OP27
 
 .subckt buffer_amplifier in out V+ V-
 X§U1 in N001 V+ V- out OP27
-R2 out N001 2k
-R1 N001 0 1k
+R1 N001 out 2k
+R2 N001 0 1k
 .ends buffer_amplifier
 
 .subckt envelope_detector in out
@@ -107,7 +107,7 @@ X§U3 N004 out V+ V- out OP27
 * Reciever
 * Transmitter
 * (Eventually Antenna)
-.tran 0 20m 18m 100u
+.tran 0 22m 18m 100u
 .lib ADI.lib
 .backanno
 .end
