@@ -1,0 +1,113 @@
+* C:\Users\ericj\OneDrive\Documents\GitHub\EE-352-Project\LT SPICE\Final Project.asc
+X§Oscillator V- 0 N008 V+ oscillator_block
+X§Switching_Modulator N008 Vin 0 N007 V+ V- switching_modulator
+V1 V+ 0 12V
+V2 V- 0 -12V
+V3 P001 0 SINE(0 30m 1k 0 0 0 0)
+X§Bandpass N007 0 N006 V+ V- bandpass
+X§Buffer_Amplifier N006 N003 V+ V- buffer_amplifier
+X§Envelope_Detector N004 N005 envelope_detector
+X§Power_Transformer N002 0 Vout V+ V- power_transformer
+X§Lowpass N001 0 N002 V+ V- bandpass2
+R1 N003 N004 50
+X§Buffer_Amplifier1 N005 N001 V+ V- buffer_amplifier
+V4 Vin P002 SINE(0 30m 4k 0 0 0 0)
+V5 P002 P001 SINE(0 30m 300 0 0 0 0)
+
+* block symbol definitions
+.subckt oscillator_block V- Gnd out V+
+R1 N003 N001 40k
+R2 N001 out 80k
+C_1 N004 P001 4.7n
+R_1 P001 out 470
+R_2 N004 Gnd 470
+C_2 N004 Gnd 4.7n
+D1 N001 N002 1N914
+D2 N005 N001 1N914
+V1 N003 Gnd PWL(0 0 1m 1m 2m 0)
+R3_2 V+ N002 1k
+R4_2 N002 out 1k
+R4_1 out N005 1k
+R3_1 N005 V- 1k
+X§U1 N004 N001 V+ V- out OP27
+.ends oscillator_block
+
+.subckt switching_modulator carrier in gnd out V+ V-
+Re out gnd 10k
+D1 N002 out 1N914
+X§U3 0 N001 V+ V- N002 OP27
+R5 N001 N002 6k
+R7 carrier N001 10k
+R8 in N001 200
+.ends switching_modulator
+
+.subckt bandpass in gnd out V+ V-
+X§U1 N004 out V+ V- out OP27
+R1 N004 gnd 10k
+C_1 N003 N004 1n
+C_2 N001 N003 1n
+R2 N003 out 40k
+R3 N002 N005 1k
+C3 N005 N001 4.7n
+R4 N005 N006 1k
+C4 N006 gnd 1n
+X§U2 N006 N001 V+ V- N001 OP27
+R5 in N007 1k
+C1 N007 N002 4.7n
+R6 N007 N008 1k
+C2 N008 gnd 1n
+X§U3 N008 N002 V+ V- N002 OP27
+.ends bandpass
+
+.subckt buffer_amplifier in out V+ V-
+X§U1 in N001 V+ V- out OP27
+R2 out N001 2k
+R1 N001 0 1k
+.ends buffer_amplifier
+
+.subckt envelope_detector in out
+D1 P001 out 1N914
+C out 0 1n
+R1 out 0 100k
+R2 in P001 500
+.ends envelope_detector
+
+.subckt power_transformer in gnd out V+ Vi
+X§U1 in out V+ Vi N001 OP27
+Q1 V+ N001 out 0 2N3904
+Q2 Vi N001 out 0 2N3906
+Rl out gnd 10k
+.ends power_transformer
+
+.subckt bandpass2 in gnd out V+ V-
+X§U1 N008 N001 V+ V- N001 OP27
+R3 N001 N005 {R}
+C3 N005 N002 1n
+R4 N005 N006 {R}
+C4 N006 gnd 4.7n
+X§U2 N006 N002 V+ V- N002 OP27
+C1 N008 gnd 4.7n
+C2 N001 N007 1n
+R1 N007 N008 {R}
+R2 in N007 {R}
+R5 N002 N003 {R}
+C5 N003 out 1n
+R6 N003 N004 {R}
+C6 N004 gnd 4.7n
+X§U3 N004 out V+ V- out OP27
+.param R=2.2k
+.ends bandpass2
+
+.model D D
+.lib C:\Users\ericj\AppData\Local\LTspice\lib\cmp\standard.dio
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\ericj\AppData\Local\LTspice\lib\cmp\standard.bjt
+* BNC Cable
+* Reciever
+* Transmitter
+* (Eventually Antenna)
+.tran 0 20m 18m 100u
+.lib ADI.lib
+.backanno
+.end
